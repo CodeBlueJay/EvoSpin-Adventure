@@ -1,0 +1,18 @@
+{
+  "Dog": {
+    "name": "Dog",
+    "weight": 0.33
+  },
+  "Ball": {
+    "name": "Ball",
+    "weight": 0.33
+  },
+  "Honda Civic": {
+    "name": "Honda Civic",
+    "weight": 0.33
+  },
+  "Cosmic Leviathan": {
+    "name": "Cosmic Leviathan",
+    "weight": 0.01
+  }
+}

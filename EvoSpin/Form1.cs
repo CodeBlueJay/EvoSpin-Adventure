@@ -7,14 +7,20 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Text.Json;
+using System.IO;
+using EvoSpin.Spinnables;
 
 namespace EvoSpin {
     public partial class Form1 : Form {
-        string item = "";
-        string[] items = { "Dog", "Ball", "Honda Civic", "Cosmic Leviathan" };
-        double[] weights = { 0.33, 0.33, 0.33, 0.01 };
+        private items _items = new items();
+        private List<string> item;
+        private List<double> weights;
+
         public Form1() {
             InitializeComponent();
+            item = _items.spinnables.Select(i => i.item).ToList();
+            weights = _items.spinnables.Select(i => i.weight).ToList();
         }
 
         private void Form1_Load(object sender, EventArgs e) {
@@ -29,7 +35,7 @@ namespace EvoSpin {
             double randomValue = new Random().NextDouble() * totalWeight;
             double cumulative = 0.0;
             int selectedIndex = 0;
-            for (int i = 0; i < weights.Length; i++)
+            for (int i = 0; i < weights.Count; i++)
             {
                 cumulative += weights[i];
                 if (randomValue < cumulative)
@@ -38,9 +44,9 @@ namespace EvoSpin {
                     break;
                 }
             }
-            item = items[selectedIndex];
+            string selectedItem = item[selectedIndex];
             int chance = (int)(1 / weights[selectedIndex]);
-            lblroll.Text = $"You got: {item} (1 in {chance})";
+            lblroll.Text = $"You got: {selectedItem} (1 in {chance})";
         }
     }
 }
